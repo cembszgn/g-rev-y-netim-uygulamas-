@@ -1,0 +1,22 @@
+PROJE 2 — WEB GELİŞTİRME
+
+İçerik:
+- React 18 + Vite arayüzü
+- Responsive görev listesi
+- Görev ekleme, düzenleme, silme ve tamamlandı işaretleme
+- Kategori, durum ve metin arama filtreleri
+- LocalStorage ile tarayıcıda kalıcı kayıt
+- Express tabanlı örnek REST API (ayrı sunucu)
+- Kurulum ve çalıştırma komutları:
+
+1) Node.js 18+ kurulu olmalı.
+2) Proje klasöründe: npm install
+3) Arayüz: npm run dev
+4) API sunucusu: npm run server
+5) İkisini aynı anda: npm start
+
+Vite varsayılan adresi: http://localhost:5173
+API varsayılan adresi: http://localhost:3001
+API kontrolü: http://localhost:3001/api/health
+
+Not: Arayüz şu anda LocalStorage üzerinden çalışır. Express API örnek REST uç noktaları olarak projeye eklenmiştir; arayüzün API ile veri senkronizasyonu ayrıca bağlanmamıştır.

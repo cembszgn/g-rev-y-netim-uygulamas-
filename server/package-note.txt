@@ -1,0 +1,1 @@
+Sunucu, kök package.json içindeki express bağımlılığı ile çalışır. API: GET /api/health, GET/POST /api/tasks, PATCH/DELETE /api/tasks/:id.
