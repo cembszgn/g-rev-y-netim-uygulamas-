@@ -1,0 +1,11 @@
+import express from "express";
+import cors from "cors";
+import { randomUUID } from "node:crypto";
+const app=express(); const PORT=process.env.PORT||3001; app.use(cors()); app.use(express.json());
+let tasks=[{id:randomUUID(),title:"API bağlantısını dene",detail:"Sunucu uç noktalarını kontrol et.",category:"İş",priority:"Orta",due:new Date().toISOString().slice(0,10),done:false}];
+app.get("/api/health",(_req,res)=>res.json({status:"ok",service:"gorev-akisi-api"}));
+app.get("/api/tasks",(_req,res)=>res.json(tasks));
+app.post("/api/tasks",(req,res)=>{const {title,detail="",category="Kişisel",priority="Orta",due=""}=req.body||{};if(typeof title!=="string"||!title.trim())return res.status(400).json({error:"Görev başlığı zorunludur."});const task={id:randomUUID(),title:title.trim(),detail,category,priority,due,done:false};tasks.unshift(task);return res.status(201).json(task);});
+app.patch("/api/tasks/:id",(req,res)=>{const i=tasks.findIndex(t=>t.id===req.params.id);if(i===-1)return res.status(404).json({error:"Görev bulunamadı."});tasks[i]={...tasks[i],...req.body,id:tasks[i].id};return res.json(tasks[i]);});
+app.delete("/api/tasks/:id",(req,res)=>{const n=tasks.length;tasks=tasks.filter(t=>t.id!==req.params.id);if(tasks.length===n)return res.status(404).json({error:"Görev bulunamadı."});return res.status(204).end();});
+app.listen(PORT,()=>console.log(`Görev Akışı API http://localhost:${PORT}`));
